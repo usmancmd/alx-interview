@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Pascal's triangle challenge"""
 
+
 def pascal_triangle(n):
     """Return list of lists of integers that represent pascal triangle"""
     if n <= 0:
