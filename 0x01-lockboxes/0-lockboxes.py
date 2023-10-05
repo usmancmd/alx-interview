@@ -6,24 +6,36 @@ each box may contain keys to the other boxes
 """
 
 
-def canUnlockAll(boxes):
+def find(parent, i):
     """Return True if all boxes can be opened, else return False"""
-    all_box_length = len(boxes)
+    if parent[i] == i:
+        return i
+    return find(parent, parent[i])
 
-    unlocked_boxes = set()
-    checked_keys = set()
+def union(parent, rank, x, y):
+    x_root = find(parent, x)
+    y_root = find(parent, y)
 
-    unlocked_boxes.add(0)
-    checked_keys.update(boxes[0])
+    if rank[x_root] < rank[y_root]:
+        parent[x_root] = y_root
+    elif rank[x_root] > rank[y_root]:
+        parent[y_root] = x_root
+    else:
+        parent[y_root] = x_root
+        rank[x_root] += 1
 
-    while checked_keys:
-        key = checked_keys.pop()
-        if key < 0 or key >= all_box_length:
-            continue
+def canUnlockAll(boxes):
+    n = len(boxes)
+    parent = list(range(n))
+    rank = [0] * n
 
-        if key not in unlocked_boxes:
-            unlocked_boxes.add(key)
-            checked_keys.update(boxes[key])
+    for i in range(n):
+        for key in boxes[i]:
+            if key < n:
+                union(parent, rank, i, key)
 
-    final_answer = len(unlocked_boxes) == all_box_length
-    return final_answer
+    for i in range(1, n):
+        if find(parent, i) != find(parent, 0):
+            return False
+
+    return True
