@@ -11,7 +11,7 @@ def canUnlockAll(boxes):
     all_box_length = len(boxes)
 
     unlocked_boxes = set()
-    check_keys = set()
+    checked_keys = set()
 
     unlocked_boxes.add(0)
     checked_keys.update(boxes[0])
