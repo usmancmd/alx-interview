@@ -12,6 +12,7 @@ def find(parent, i):
         return i
     return find(parent, parent[i])
 
+
 def union(parent, rank, x, y):
     x_root = find(parent, x)
     y_root = find(parent, y)
@@ -23,6 +24,7 @@ def union(parent, rank, x, y):
     else:
         parent[y_root] = x_root
         rank[x_root] += 1
+
 
 def canUnlockAll(boxes):
     n = len(boxes)
