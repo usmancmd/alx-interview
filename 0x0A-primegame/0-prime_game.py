@@ -42,8 +42,6 @@ def primeGame(n):
 
 def isWinner(x, nums):
     """Returns winner in the primeGame"""
-    if len(nums) == 10000:
-        return "Maria"
     if x <= 0 or type(nums[0] != int):
         return None
 
