@@ -42,9 +42,6 @@ def primeGame(n):
 
 def isWinner(x, nums):
     """Returns winner in the primeGame"""
-    if x <= 0 or type(nums[0] != int):
-        return None
-
     maria_score = 0
     ben_score = 0
 
